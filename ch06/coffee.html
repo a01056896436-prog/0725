@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <!-- CDN 사용해 폰트 파일을 로드하기 -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            * {
+                /* 폰트 설정하기 */
+                 font-family: "Nanum Pen Script", "Noto Sans", sans-serif; */
+                /* 요소의 너비/높이를 계산할 때 순수 콘텐트 박스 영역만 계산할지(content-box), 
+                테두리와 안쪽 여백도 포함해 계산할지(border-box) 설정하는 css 속성
+                별도 설정하지 않을 경우 기본값은 content-box */
+                box-sizing: border-box;
+            }
+            .main {
+                /* 너비는 500px */
+                width: 500px;
+                /* 높이는 300px */
+                height: 300px;
+                /* 테두리 안쪽 여백은 상하좌우 20px */
+                padding: 20px;
+                /* 테두리 바깥쪽 여백은 상하 0, 좌우는 자동으로 균등하게 배분되도록 (auto) */
+                margin: 0 auto;
+                /* 배경 색상은 rgb(230, 230, 230) */
+                background-color: rgb(239, 252, 255);
+            }
+            #price {
+                /* 너비는 100% */
+                width: 100%;
+                /* 테두리 두께는 1px, 유형은 실선, 색상은 rgb(100, 150, 255) */
+                border: 1px solid rgb(100, 150, 255);
+                /* 테두리 반경은 5px */
+                border-radius: 5px;
+                /* 해당 input을 클릭해 focus 되었을 때, 외곽선이 없도록 (outline)*/
+                outline: none;
+                /* 테두리 안쪽 여백은 상하 5px 좌우 10px */
+                padding: 5px 10px;
+                /* 테두리 바깥쪽 여백을 하단 1rem */
+                margin-bottom: 1rem;
+                /* rem은 최상단에 정의된 폰트 크기를 기준으로 결정된다. */
+                /* 최상단 폰트 크기를 14px로 정의한 경우, 1rem = 14px이 된다. */
+            }
+            .btn_wrap {
+                /* 자신의 부모 컨테이너 기준 오른쪽에 배치되도록 (float 속성)*/
+                float: right;
+            }
+            #btn_calc {
+                /* 배경 색상은 rgb(100, 150, 255); */
+                background-color: rgb(201, 239, 255);
+                /* 텍스트 색상은 rgb(220, 220, 220) */
+                color: rgb(79, 120, 255);
+                /* 테두리 없음 */
+                border: none;
+                /* 해당 id를 가진 요소에 마우스를 가져다대면 커서가 "pointer"로 바뀌도록 */
+                cursor: pointer;
+                /* border 안쪽 여백은 상하 12px 좌우 20px */
+                padding: 12px 20px;
+                
+            }
+
+            /* :hover는 의사 클래스 선택자 중 하나로, 해당 요소에 마우스를 올렸을 때 CSS를 정의하기 위해 사용된다. */
+            #btn_calc:hover {
+                /* 배경색은 rgb(130, 180, 255) */
+                background-color: rgb(47, 130, 255);
+                color: rgb(217, 226, 255);
+                margin: 10 auto;
+                transition: all ease 0.3;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <h1>아메리카노 최대 수량 계산</h1>
+            <input type="text" id="price" value="5500" />
+            <div class="btn_wrap">
+                <button id="btn_calc">계산</button>
+            </div>
+            <div id="print">
+                아메리카노를 최대 몇 잔 마실 수 있고, 남은 거스름돈은
+                얼마일까요?
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+    const onCalcBtnClick = function () {
+        let money = +document.getElementById("price").value;
+        const price = 5500;
+        let count = 0; // 살 수 있는 아메리카노 수량
+        let change = 0; // 아메리카노를 가능한 많이 사고 남은 거스름돈
+        
+        //Math.round()// 반올림
+        //Math.cell()//
+        //math.flooe()//버림
+        //Math.trunc()//소수점 없애기
+        // 1000/2200 -> 몱은 퇴대 커피 수, 나머지는 거스름돈
+        // TODO :: 입력받은 금액을 기준으로 살 수 있는 아메리카노의 수량 구하기
+        // TODO :: 입력받은 금액을 기준으로 아메리카노를 최대한 사고 남은 잔돈 구하기
+        count= Math.trunc(money/price);
+        change=money%price;
+
+
+        document.getElementById("print").textContent =
+            `아메리카노를 ${count}잔 살 수 있다.. 거스름돈은 ${change}원이다`;
+    };
+    document.getElementById("btn_calc").onclick = onCalcBtnClick;
+</script>
