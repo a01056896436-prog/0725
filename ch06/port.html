@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap');
+        *{
+            font-family: "Gamja Flower", ;
+        }
+        .wrap{
+            width: 100%;
+            display:flex;
+        }
+        .profile_wrap{
+            font-size: 18px;
+            width: 50%;
+            background-color: rgb(217, 255, 242);
+            color: rgb(0, 0, 0);
+        }
+        .btn_wrap{
+            width: 50%;
+            background-color: rgb(217, 255, 242);
+            color: rgb(255, 219, 219);
+        }
+
+        .btn_wrap button {
+            width: 200px;
+            height: 80px;
+            background-color: rgb(184, 246, 252);
+            cursor:pointer;
+            border-radius: 20px;
+            border:none;
+            box-shadow: 5px 5px 5px rgb(127, 159, 179);
+        }
+        .btn_wrap button:hover{
+            background-color: rgb(127, 217, 255);
+        }
+        html,
+        body{
+            background-color: rgb(241, 249, 255);
+        }
+
+        h1 {
+            color: rgb(0, 0, 0);
+        }
+        img{
+            width: 40%;
+        }
+    </style>
+</head>
+<body>
+    <h1>안녕하세요, 김민주입니다.</h1>
+    <div class="wrap">
+    <div class="profile_wrap">
+        <div>나이:15</div>
+        <div>취미:노래 듣기</div>
+        <div>장례희망:??</div>
+        <div>집 가고 싶어요</div>
+    </div>
+    <div class="btn_wrap">
+        <button class="btn btn-1" onclick="goNaver()">naver</button>
+        <button style>버튼2</button>
+        <button style>버튼3</button>
+        <button style>버튼4</button>
+    </div>
+    <img src="https://celcliptipsprod.s3-ap-northeast-1.amazonaws.com/tips_article_body/6866/2078950/26d1d72a0b9dde40bed47d00a62482d2"/>
+</body>
+<script>
+    function goNaver() {
+        location.href="https://www.naver.com/"
+    }
+</script>
+</html>
