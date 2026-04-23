@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">버튼</button>
+</body>
+<script>
+    const firstClick=function() {
+        alert("first")
+    };
+    const secondClick=function() {
+        alert("second")
+    };
+    //onclicdms click 이벤트가 발생할 때 기본적으로 실행하는 이벤트 리스너
+    //이벤트
+    document.getElementById("btn").addEventListener("click",firstClick);
+    document.getElementById("btn").addEventListener("click",secondClick);
+</script>
+</html>
