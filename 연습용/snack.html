@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color:rgb(255, 255, 255);
+            font-family: "Noto Sana KR", sans-serif;
+        }
+
+        h1 {
+            color:rgb(50, 80, 160);
+        }
+
+        .warp {
+            width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .menu_box {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgb(235, 242, 255);
+            border-radius: 10px;
+        }
+
+        .menu_box li {
+            margin-bottom: 8px;
+        }
+
+        .event_box{
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgb(255,241,210);
+            border-radius: 10px;
+        }
+
+        input{
+            width: 400px;
+            height: 34px;
+        }
+
+        button {
+            height: 38px;
+            background-color: rgb(50, 80, 160);
+            color:white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: rgb(255, 120, 120);
+        }
+    </style>
+</head>
+<body>
+    <div class="warap">
+        <h1>우리반 간식 소개&추천</h1>
+        <p>친구들과 먹고 싶은 간식을 소개하고 추첨하는 웹 페이지입니다.</p>
+        <!--"/", 프로젝트 최상위 경로, 혹은 웹서버나 도메인의 최상위 경로-->
+        <!--"/", 현재 파일이 있는 폴더-->
+        <!--"/", 현재 파일이 있는 폴더의 상위 폴더-->
+        <img src="./snack.jpg" alt="간식 사진"/>
+        <div class="menu_box">
+            <h2>인기 간식</h2>
+            <!--unorderd list(정렬되지 않은 리스트),)-->
+            <ul id="menu_list">
+                <!--unorderd list-->
+            </ul>
+        </div>
+        <div class="menu_box">
+            <h2>간식 추가하기</h2>
+            <input id="input_snack" type="text" placeholder="추가할 간식 이름"/>
+            <button id="btn_add">추가</button>
+        </div>
+        <div class="event_box">
+            <h2>오늘의 간식</h2>
+            <p id="event_result">버튼을 누르면 간식이 추첨됩니다.</p>
+            <button id="btn_event">간식 추첨</button>
+        </div>
+    </div>
+    <script>
+         const snacks = ["치즈 토스트","딸기 에이드","초코 쿠키"];
+
+        function renderSnack(snack) {
+            const li = document.createElement("li");
+            li.textContent=snack;
+            // append-추가하다
+            // child-어린이/자식
+            document.getElementById("menu_list").appendChild(li);
+        } 
+
+        for(let i = 0; i < snacks.length; i++) {
+            renderSnack(snacks[i]);
+        }
+
+        //2-1. 만약 간식 이름이 비었다면 안내 몬구를 출력하고 반환한다.
+        //함수 표현식
+        const addSnack = function(snack){
+            //입력박은 snack 이름이 비어있지 않으면 snacks 뱌욜 추가 후 true 반환
+            if (snack.length > 0) {
+                snacks.push(snack);
+                return true;
+            }
+            //그렇지 않다면 false 반환
+            return false;
+        };
+
+        //2.간식 리스트에 추가한다.
+        document.getElementById("btn_add").onclick = function() {
+            //1.입력된 간식 이름을 가져온다.
+            const snack = document.getElementById("input_snack").value;
+
+            if (addSnack(snack)) {
+                //간식 추가가 정싱적으로 되었다.
+                renderSnack(snack);
+            }else{
+                //간식 추가에 실패하였다.
+                alert("간식 이름을 입력하세요.")
+            }
+            //3. 추가된 간식을 그려준다.\표시한다.
+
+        };
+
+        //0~n 미만의 정수를 랜덤으로 반환
+        const getRandnmNumber = function(n) {
+            //0~1 미만의 무작위 소수를 변환
+            return Math.floor(Math.random()*n);
+        };
+
+        document.getElementById("btn_event").onclick = function() {
+            const randomNum = getRandnmNumber(snacks.length);
+            document.getElementById("event_result").textContent = `오늘의 간식은 ${snacks[randomNum]}입니다!`;
+        };
+    </script>
+</body>
+</html>
