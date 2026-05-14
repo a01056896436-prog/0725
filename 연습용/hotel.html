@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>호텔 체크인 관리</title>
+    <style>
+        @font-face {
+    font-family: 'Ongleip';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105@1.1/Gyungyoung.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+        body{
+            font-family:"Ongleip";
+            background-color: rgb(255, 255, 255);
+            color: rgba(164, 172, 255, 0.61)
+        }
+        h1{
+            color:rgb(130, 234, 255)
+        }
+
+        p{
+            font-size: 18px;
+            background-color: rgba(45, 58, 196, 0.655);
+        }
+        
+        .warp{
+            background-color: rgba(189, 245, 252, 0.256);
+            border-radius:  10px;
+            padding : 20px;
+            /* 상화,좌우*/
+            margin: 20px auto 0;
+            /* 상화,좌우*/
+            /* margin: 0 auto; */
+            width: 50%;
+        }
+
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .chickin_warp {
+            background-color: rgba(221, 217, 255, 0.39);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+
+        .chickin_warp h2 {
+            margin-top: 5px;
+        }
+
+        .room_warp{
+            background-color: rgba(171, 161, 255, 0.39);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+
+        input{
+            width: 70%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        button{
+            padding: 12px 18px;
+            border: none;
+            border-radius: 10px;
+            background-color:rgb(122, 231, 253);
+            color: rgb(224, 243, 255);
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover{
+            background-color:rgb(70, 70, 255);
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li{
+            margin: 10px;
+            padding: 10px;
+            background-color:aliceblue;
+            border-radius: 5px;
+        }
+        
+        #room_cnt2 {
+            font-size: 30px;
+            color:rgb(189, 201, 255);
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="warp">
+    <!--0.소개-->
+    <h1>경소고 호텔 체크인 관리</h1>
+    <p>경소고 호텔의 체크인/채크아웃을 관리하는 웹 페이지입니다.</p>
+    <!--성대 경로 (./<현재 파일이 있는 풀더>, ../<현재 파일이 있는 풀더의 상위 풀더)-->
+    <!--절대 경로 /<현재 프로젝트/도예인의 최상위 풀더>-->
+    <img src="./hotel.jpg" alt="호텔 이미지입니다." />
+    <div class="chickin_warp">
+         <!--1.이미 체크인이 된 사람 명단-->
+        <h2>체크인 목록</h2>
+        <ul id="checkin_list">
+            <li>은</li>
+            <li>동</li>
+            <li>득</li>
+        </ul>
+    </div>
+     <!--2. 체크인-->
+     <div class="chickin_warp">
+        <h2>체크인</h2>
+        <input id="input_name" 
+        type="text" 
+        placeholder="손님 이름을 입력하세요">
+        <button id = "btn_checkin">체크인</button>
+     </div>
+     <!--3. 체크아웃-->
+     <div class="chickin_warp">
+        <h2>체크아웃</h2>
+        <input id="input_num" 
+        type="number" 
+        placeholder="손님 순번을 입력하세요">
+        <button id = "btn_checkout">체크아웃</button>
+     </div>
+    <!--4. 빈방 개수-->
+    <div class="room_warp">
+        <h2>빈 방 개수</h>
+        <p id="room_cnt2">100개</p>
+    </div>
+</body>
+<script>
+    const chickinList = document.getElementById("checkin_list");
+    let customersCount = chickinList.children.length;
+
+    function checkin(name) {
+        if (name.trim().length == 0) {
+            alert("이름을 입력하세요.")
+            return;
+        }
+        customersCount++;
+        return true;
+    }
+
+    // 체크인
+    // customers 배열에 손님 추가
+    // ul 안에 li로 가공 후 추가
+    document.getElementById("btn_checkin").onclick = function() {
+        const name = document.getElementById("input_name").value;
+        if(checkin(name)); {
+            const li = document.createElement("li");                                                                                       
+            li.textContent = name;                                                                                
+            chickinList.appendChild(li);
+        }
+    };
+
+    // 체크아웃
+    document.getElementById("btn_checkout").onclick = function() {
+        const num = document.getElementById("input_num").value;
+        if (num <= customersCount && num >= 1){
+            customersCount--;
+            chickinList.children[num - 1].remove();
+        }else{
+            alert(`1부터 ${customersCount} 시아의 값을 입력해주세요.`);
+        }
+    };
+    // 남은 방 개수 관리
+</script>
+</html>
